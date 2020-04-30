@@ -37,15 +37,7 @@ interface Star {
 
 const getRandomStarDiameter = () => getRandomIntBetween(1, 10);
 
-const createStar = ({
-  x,
-  y,
-  diameter,
-}: {
-  x?: number;
-  y?: number;
-  diameter?: number;
-}): Star => ({
+const createStar = ({ x, y, diameter }: Partial<Star>): Star => ({
   x: x || getRandomXOrYRelativeToNorthStar(),
   y: y || getRandomXOrYRelativeToNorthStar(),
   diameter: diameter || getRandomStarDiameter(),
