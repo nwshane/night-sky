@@ -1,7 +1,7 @@
 const MaxStarDiameter = 10;
 let NorthStarX: number;
 let NorthStarY: number;
-const RotationSpeedMultiplier = 1;
+const RotationSpeed = 1;
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
@@ -73,7 +73,7 @@ function draw() {
     push();
     stroke("blue");
     strokeWeight(star.diameter);
-    rotate((frameCount / 500) * RotationSpeedMultiplier);
+    rotate((frameCount / 500) * RotationSpeed);
     point(star.x, star.y);
     pop();
   }
