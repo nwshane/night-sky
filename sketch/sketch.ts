@@ -14,24 +14,24 @@ function getRandomIntBetween(min: number, max: number) {
   return Math.floor(Math.random() * Math.floor(difference) + min);
 }
 
-function getRandomXRelativeToNorthStar() {
+const getDistanceFromNorthStarToFarthestCorner = () => {
   const northStarX = getNorthStarX();
-
-  // Horizontal distance from north star to most distant side of page.
-  const xMaxDistance = Math.max(northStarX, width - northStarX);
-
-  return getRandomIntBetween(-1 * xMaxDistance, xMaxDistance);
-}
-
-function getRandomYRelativeToNorthStar() {
   const northStarY = getNorthStarY();
 
-  // Vertical distance from north star to either bottom or top of page,
-  // whichever is farther away.
+  const xMaxDistance = Math.max(northStarX, width - northStarX);
   const yMaxDistance = Math.max(northStarY, height - northStarY);
 
-  return getRandomIntBetween(-1 * yMaxDistance, yMaxDistance);
-}
+  return Math.sqrt(xMaxDistance ** 2 + yMaxDistance ** 2);
+};
+
+const getRandomXOrYRelativeToNorthStar = () => {
+  const distanceToFarthestCorner = getDistanceFromNorthStarToFarthestCorner();
+
+  return getRandomIntBetween(
+    -1 * distanceToFarthestCorner,
+    distanceToFarthestCorner
+  );
+};
 
 interface Star {
   startingXRelativeToNorthStar: number;
@@ -40,8 +40,8 @@ interface Star {
 }
 
 const createStar = (): Star => ({
-  startingXRelativeToNorthStar: getRandomXRelativeToNorthStar(),
-  startingYRelativeToNorthStar: getRandomYRelativeToNorthStar(),
+  startingXRelativeToNorthStar: getRandomXOrYRelativeToNorthStar(),
+  startingYRelativeToNorthStar: getRandomXOrYRelativeToNorthStar(),
   diameter: getRandomIntBetween(1, 10),
 });
 
