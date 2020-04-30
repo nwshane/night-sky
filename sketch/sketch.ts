@@ -3,6 +3,15 @@ let NorthStarX: number;
 let NorthStarY: number;
 const RotationSpeed = 1;
 
+/*
+todo:
+- calculate the number of stars based on the area of the canvas, so that
+  the density of the stars is the same on different screen sizes
+- add a constant for scaling up or down the number of stars
+- make stars twinkle
+- add Earth
+*/
+
 function setup() {
   createCanvas(windowWidth, windowHeight);
   NorthStarX = width / 2;
