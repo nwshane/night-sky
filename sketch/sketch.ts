@@ -1,4 +1,4 @@
-const MaxStarDiameter = 10;
+const MaxStarDiameter = 5;
 let NorthStarX: number;
 let NorthStarY: number;
 const RotationSpeed = 1;
