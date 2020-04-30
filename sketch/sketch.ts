@@ -1,9 +1,10 @@
+const MaxStarDiameter = 10;
+const NorthStarX = width / 2;
+const NorthStarY = height * (2 / 5);
+
 function setup() {
   createCanvas(windowWidth, windowHeight);
 }
-
-const getNorthStarX = () => width / 2;
-const getNorthStarY = () => height * (2 / 5);
 
 function getRandomIntBetween(min: number, max: number) {
   const difference = max - min;
@@ -11,8 +12,8 @@ function getRandomIntBetween(min: number, max: number) {
 }
 
 const getDistanceFromNorthStarToFarthestCorner = () => {
-  const northStarX = getNorthStarX();
-  const northStarY = getNorthStarY();
+  const northStarX = NorthStarX;
+  const northStarY = NorthStarY;
 
   const xMaxDistance = Math.max(northStarX, width - northStarX);
   const yMaxDistance = Math.max(northStarY, height - northStarY);
@@ -35,7 +36,7 @@ interface Star {
   diameter: number;
 }
 
-const getRandomStarDiameter = () => getRandomIntBetween(1, 10);
+const getRandomStarDiameter = () => getRandomIntBetween(1, MaxStarDiameter + 1);
 
 const createStar = ({ x, y, diameter }: Partial<Star>): Star => ({
   x: x || getRandomXOrYRelativeToNorthStar(),
@@ -50,12 +51,11 @@ let northStar: Star;
 function draw() {
   background(50);
 
-  if (!northStar)
-    northStar = createStar({ x: getNorthStarX(), y: getNorthStarY() });
-  translate(northStar.x, northStar.y);
+  if (!northStar) northStar = createStar({ x: 0, y: 0 });
+  translate(NorthStarX, NorthStarY);
   stroke("blue");
   strokeWeight(northStar.diameter);
-  point(0, 0);
+  point(northStar.x, northStar.y);
 
   // only run the create star code once
   if (!stars[0]) {
