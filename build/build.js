@@ -16,22 +16,27 @@ function chooseRandomXOnPage() {
 function chooseRandomYOnPage() {
     return getRandomIntBetween(-1 * randomlyGeneratedAreaModifier * getNorthStarY(), randomlyGeneratedAreaModifier * getNorthStarY());
 }
-var starX, starY;
+var createStar = function () { return ({
+    x: chooseRandomXOnPage(),
+    y: chooseRandomYOnPage(),
+}); };
+var stars = [];
 function draw() {
     background(50);
     translate(getNorthStarX(), getNorthStarY());
     stroke("purple");
     strokeWeight(10);
     point(0, 0);
-    if (!starX)
-        starX = chooseRandomXOnPage();
-    if (!starY)
-        starY = chooseRandomYOnPage();
-    push();
-    stroke("blue");
-    strokeWeight(20);
-    rotate(frameCount / 200);
-    point(starX, starY);
-    pop();
+    if (!stars[0])
+        stars.push(createStar());
+    for (var _i = 0, stars_1 = stars; _i < stars_1.length; _i++) {
+        var star = stars_1[_i];
+        push();
+        stroke("blue");
+        strokeWeight(20);
+        rotate(frameCount / 200);
+        point(star.x, star.y);
+        pop();
+    }
 }
 //# sourceMappingURL=build.js.map

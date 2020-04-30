@@ -7,7 +7,7 @@ function setup() {
 const getNorthStarX = () => width / 2;
 const getNorthStarY = () => height / 3;
 
-function getRandomIntBetween(min, max) {
+function getRandomIntBetween(min: number, max: number) {
   const difference = max - min;
   return Math.floor(Math.random() * Math.floor(difference) + min);
 }
@@ -29,7 +29,17 @@ function chooseRandomYOnPage() {
   );
 }
 
-let starX, starY;
+interface Star {
+  x: number;
+  y: number;
+}
+
+const createStar = (): Star => ({
+  x: chooseRandomXOnPage(),
+  y: chooseRandomYOnPage(),
+});
+
+const stars: Star[] = [];
 
 function draw() {
   background(50);
@@ -39,15 +49,16 @@ function draw() {
   strokeWeight(10);
   point(0, 0);
 
-  if (!starX) starX = chooseRandomXOnPage();
-  if (!starY) starY = chooseRandomYOnPage();
+  if (!stars[0]) stars.push(createStar());
 
-  push();
-  stroke("blue");
-  strokeWeight(20);
-  rotate(frameCount / 200);
-  point(starX, starY);
-  pop();
+  for (const star of stars) {
+    push();
+    stroke("blue");
+    strokeWeight(20);
+    rotate(frameCount / 200);
+    point(star.x, star.y);
+    pop();
+  }
 
   //   push();
   //   stroke("blue");
