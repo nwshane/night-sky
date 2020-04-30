@@ -12,20 +12,27 @@ function getRandomIntBetween(min: number, max: number) {
   return Math.floor(Math.random() * Math.floor(difference) + min);
 }
 
-const areaModifier = 1;
+// This modifier constant modifies the space in which a star can be generated.
+// If it is set to 1, then a star can be generated anywhere within the page. However,
+// the problem with only generating stars within the area of the page is that when they rotate,
+// blank parts farther away from the north star will appear that were not present on the
+// screen beforehand.
+// The way to fix this would be to generate stars in relation to the North Star, I think, and to
+// allow them to be generated as far away as the north star is distant from a corner of the page.
+const AreaModifier = 2;
 
 // between the left side of the page and the right side of the page
 function chooseRandomXOnPage() {
   return getRandomIntBetween(
-    -1 * areaModifier * getNorthStarX(),
-    areaModifier * (width - getNorthStarX())
+    -1 * AreaModifier * getNorthStarX(),
+    AreaModifier * (width - getNorthStarX())
   );
 }
 
 function chooseRandomYOnPage() {
   return getRandomIntBetween(
-    -1 * areaModifier * getNorthStarY(),
-    areaModifier * (height - getNorthStarY())
+    -1 * AreaModifier * getNorthStarY(),
+    AreaModifier * (height - getNorthStarY())
   );
 }
 

@@ -9,12 +9,12 @@ function getRandomIntBetween(min, max) {
     var difference = max - min;
     return Math.floor(Math.random() * Math.floor(difference) + min);
 }
-var areaModifier = 1;
+var AreaModifier = 2;
 function chooseRandomXOnPage() {
-    return getRandomIntBetween(-1 * areaModifier * getNorthStarX(), areaModifier * (width - getNorthStarX()));
+    return getRandomIntBetween(-1 * AreaModifier * getNorthStarX(), AreaModifier * (width - getNorthStarX()));
 }
 function chooseRandomYOnPage() {
-    return getRandomIntBetween(-1 * areaModifier * getNorthStarY(), areaModifier * (height - getNorthStarY()));
+    return getRandomIntBetween(-1 * AreaModifier * getNorthStarY(), AreaModifier * (height - getNorthStarY()));
 }
 var createStar = function () { return ({
     x: chooseRandomXOnPage(),
