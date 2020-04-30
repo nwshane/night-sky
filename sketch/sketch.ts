@@ -78,7 +78,7 @@ function draw() {
     push();
     stroke("blue");
     strokeWeight(star.diameter);
-    rotate(frameCount / 200);
+    rotate(frameCount / 500);
     point(star.x, star.y);
     pop();
   }
