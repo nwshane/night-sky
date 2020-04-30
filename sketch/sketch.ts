@@ -32,12 +32,16 @@ function chooseRandomYOnPage() {
 interface Star {
   x: number;
   y: number;
+  diameter: number;
 }
 
 const createStar = (): Star => ({
   x: chooseRandomXOnPage(),
   y: chooseRandomYOnPage(),
+  diameter: getRandomIntBetween(1, 10),
 });
+
+const starCount = 3;
 
 const stars: Star[] = [];
 
@@ -49,28 +53,20 @@ function draw() {
   strokeWeight(10);
   point(0, 0);
 
-  if (!stars[0]) stars.push(createStar());
+  // only run the create star code once
+  if (!stars[0])
+    // create stars
+    for (let i = 0; i < starCount; i++) {
+      stars.push(createStar());
+    }
 
+  // render stars
   for (const star of stars) {
     push();
     stroke("blue");
-    strokeWeight(20);
+    strokeWeight(star.diameter);
     rotate(frameCount / 200);
     point(star.x, star.y);
     pop();
   }
-
-  //   push();
-  //   stroke("blue");
-  //   strokeWeight(5);
-  //   rotate(frameCount / 200);
-  //   point(width / -8, height / 4);
-  //   pop();
-
-  //   push();
-  //   stroke("blue");
-  //   strokeWeight(5);
-  //   rotate(frameCount / 200);
-  //   point(width / -2, height / -4);
-  //   pop();
 }

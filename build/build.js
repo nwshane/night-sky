@@ -19,7 +19,9 @@ function chooseRandomYOnPage() {
 var createStar = function () { return ({
     x: chooseRandomXOnPage(),
     y: chooseRandomYOnPage(),
+    diameter: getRandomIntBetween(1, 10),
 }); };
+var starCount = 3;
 var stars = [];
 function draw() {
     background(50);
@@ -28,12 +30,14 @@ function draw() {
     strokeWeight(10);
     point(0, 0);
     if (!stars[0])
-        stars.push(createStar());
+        for (var i = 0; i < starCount; i++) {
+            stars.push(createStar());
+        }
     for (var _i = 0, stars_1 = stars; _i < stars_1.length; _i++) {
         var star = stars_1[_i];
         push();
         stroke("blue");
-        strokeWeight(20);
+        strokeWeight(star.diameter);
         rotate(frameCount / 200);
         point(star.x, star.y);
         pop();
