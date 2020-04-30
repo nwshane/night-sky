@@ -2,8 +2,8 @@ function setup() {
   createCanvas(windowWidth, windowHeight);
 }
 
-const getNorthStarX = () => width / 10;
-const getNorthStarY = () => height / 10;
+const getNorthStarX = () => width / 2;
+const getNorthStarY = () => height * (2 / 5);
 
 function getRandomIntBetween(min: number, max: number) {
   const difference = max - min;
@@ -30,33 +30,46 @@ const getRandomXOrYRelativeToNorthStar = () => {
 };
 
 interface Star {
-  startingXRelativeToNorthStar: number;
-  startingYRelativeToNorthStar: number;
+  x: number;
+  y: number;
   diameter: number;
 }
 
-const createStar = (): Star => ({
-  startingXRelativeToNorthStar: getRandomXOrYRelativeToNorthStar(),
-  startingYRelativeToNorthStar: getRandomXOrYRelativeToNorthStar(),
-  diameter: getRandomIntBetween(1, 10),
+const getRandomStarDiameter = () => getRandomIntBetween(1, 10);
+
+const createStar = ({
+  x,
+  y,
+  diameter,
+}: {
+  x?: number;
+  y?: number;
+  diameter?: number;
+}): Star => ({
+  x: x || getRandomXOrYRelativeToNorthStar(),
+  y: y || getRandomXOrYRelativeToNorthStar(),
+  diameter: diameter || getRandomStarDiameter(),
 });
 
 const starCount = 500;
 const stars: Star[] = [];
+let northStar: Star;
 
 function draw() {
   background(50);
 
-  translate(getNorthStarX(), getNorthStarY());
-  stroke("purple");
-  strokeWeight(10);
+  if (!northStar)
+    northStar = createStar({ x: getNorthStarX(), y: getNorthStarY() });
+  translate(northStar.x, northStar.y);
+  stroke("blue");
+  strokeWeight(northStar.diameter);
   point(0, 0);
 
   // only run the create star code once
   if (!stars[0]) {
     // create stars
     for (let i = 0; i < starCount; i++) {
-      stars.push(createStar());
+      stars.push(createStar({}));
     }
   }
 
@@ -66,7 +79,7 @@ function draw() {
     stroke("blue");
     strokeWeight(star.diameter);
     rotate(frameCount / 200);
-    point(star.startingXRelativeToNorthStar, star.startingYRelativeToNorthStar);
+    point(star.x, star.y);
     pop();
   }
 }
