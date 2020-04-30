@@ -1,9 +1,5 @@
-let angle = 0;
-let squares = 10;
-
 function setup() {
   createCanvas(windowWidth, windowHeight);
-  console.log({ windowWidth, windowHeight });
 }
 
 const getNorthStarX = () => width / 10;
