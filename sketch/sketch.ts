@@ -12,20 +12,20 @@ function getRandomIntBetween(min: number, max: number) {
   return Math.floor(Math.random() * Math.floor(difference) + min);
 }
 
-const randomlyGeneratedAreaModifier = 0.5;
+const areaModifier = 1;
 
 // between the left side of the page and the right side of the page
 function chooseRandomXOnPage() {
   return getRandomIntBetween(
-    -1 * randomlyGeneratedAreaModifier * getNorthStarX(),
-    randomlyGeneratedAreaModifier * getNorthStarX()
+    -1 * areaModifier * getNorthStarX(),
+    areaModifier * (width - getNorthStarX())
   );
 }
 
 function chooseRandomYOnPage() {
   return getRandomIntBetween(
-    -1 * randomlyGeneratedAreaModifier * getNorthStarY(),
-    randomlyGeneratedAreaModifier * getNorthStarY()
+    -1 * areaModifier * getNorthStarY(),
+    areaModifier * (height - getNorthStarY())
   );
 }
 
@@ -41,8 +41,7 @@ const createStar = (): Star => ({
   diameter: getRandomIntBetween(1, 10),
 });
 
-const starCount = 3;
-
+const starCount = 50;
 const stars: Star[] = [];
 
 function draw() {

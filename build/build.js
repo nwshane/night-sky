@@ -9,19 +9,19 @@ function getRandomIntBetween(min, max) {
     var difference = max - min;
     return Math.floor(Math.random() * Math.floor(difference) + min);
 }
-var randomlyGeneratedAreaModifier = 0.5;
+var areaModifier = 1;
 function chooseRandomXOnPage() {
-    return getRandomIntBetween(-1 * randomlyGeneratedAreaModifier * getNorthStarX(), randomlyGeneratedAreaModifier * getNorthStarX());
+    return getRandomIntBetween(-1 * areaModifier * getNorthStarX(), areaModifier * (width - getNorthStarX()));
 }
 function chooseRandomYOnPage() {
-    return getRandomIntBetween(-1 * randomlyGeneratedAreaModifier * getNorthStarY(), randomlyGeneratedAreaModifier * getNorthStarY());
+    return getRandomIntBetween(-1 * areaModifier * getNorthStarY(), areaModifier * (height - getNorthStarY()));
 }
 var createStar = function () { return ({
     x: chooseRandomXOnPage(),
     y: chooseRandomYOnPage(),
     diameter: getRandomIntBetween(1, 10),
 }); };
-var starCount = 3;
+var starCount = 50;
 var stars = [];
 function draw() {
     background(50);
