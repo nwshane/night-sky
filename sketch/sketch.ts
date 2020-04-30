@@ -1,9 +1,12 @@
 const MaxStarDiameter = 10;
-const NorthStarX = width / 2;
-const NorthStarY = height * (2 / 5);
+let NorthStarX: number;
+let NorthStarY: number;
+const RotationSpeedMultiplier = 1;
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
+  NorthStarX = width / 2;
+  NorthStarY = height * (2 / 5);
 }
 
 function getRandomIntBetween(min: number, max: number) {
@@ -70,7 +73,7 @@ function draw() {
     push();
     stroke("blue");
     strokeWeight(star.diameter);
-    rotate(frameCount / 500);
+    rotate((frameCount / 500) * RotationSpeedMultiplier);
     point(star.x, star.y);
     pop();
   }
