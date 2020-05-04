@@ -2,21 +2,22 @@ const MaxStarDiameter = 5;
 let NorthStarX: number;
 let NorthStarY: number;
 const RotationSpeed = 1;
+let starCount: number;
 
 /*
 todo:
-- calculate the number of stars based on the area of the canvas, so that
-  the density of the stars is the same on different screen sizes
 - add a constant for scaling up or down the number of stars
 - make stars twinkle
 - add Earth
 - from Roby: I think something that could help with depth is making the smaller circles more transparent and maybe making the background a more intense hue, perhaps a dark blue like #001B44 - from there try playing with colors for the stars. I like using this palette as a nice reference for colors that pair well together on a screen http://tachyons.io/docs/themes/skins/ :)
+- investigate why north star is not showing up
 */
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
   NorthStarX = width / 2;
   NorthStarY = height * (2 / 5);
+  starCount = Math.floor(windowWidth * windowHeight * 0.00045);
 }
 
 function getRandomIntBetween(min: number, max: number) {
@@ -57,7 +58,6 @@ const createStar = ({ x, y, diameter }: Partial<Star>): Star => ({
   diameter: diameter || getRandomStarDiameter(),
 });
 
-const starCount = 500;
 const stars: Star[] = [];
 let northStar: Star;
 
