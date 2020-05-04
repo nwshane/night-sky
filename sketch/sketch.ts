@@ -3,6 +3,7 @@ let NorthStarX: number;
 let NorthStarY: number;
 const RotationSpeed = 1;
 let starCount: number;
+const StarColor = "rgba(66, 0, 255, 0.9)";
 
 /*
 todo:
@@ -69,7 +70,7 @@ function draw() {
     });
 
   translate(NorthStarX, NorthStarY);
-  stroke("blue");
+  stroke(StarColor);
   strokeWeight(northStar.diameter);
   point(northStar.x, northStar.y);
 
@@ -84,7 +85,7 @@ function draw() {
   // render stars
   for (const star of stars) {
     push();
-    stroke("blue");
+    stroke(StarColor);
     strokeWeight(star.diameter);
     rotate((frameCount / 500) * RotationSpeed);
     point(star.x, star.y);
