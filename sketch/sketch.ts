@@ -3,7 +3,7 @@ let NorthStarX: number;
 let NorthStarY: number;
 const RotationSpeed = 1;
 let starCount: number;
-const StarColor = "rgba(66, 0, 255, 0.9)";
+const StarColor = "rgba(249, 255, 0, 0.4)";
 
 /*
 todo:
