@@ -60,7 +60,7 @@ const stars: Star[] = [];
 let northStar: Star;
 
 function draw() {
-  background(50);
+  background("#001B44");
 
   if (!northStar)
     northStar = createStar({
