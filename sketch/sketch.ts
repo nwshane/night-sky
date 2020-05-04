@@ -52,8 +52,8 @@ interface Star {
 const getRandomStarDiameter = () => getRandomIntBetween(1, MaxStarDiameter + 1);
 
 const createStar = ({ x, y, diameter }: Partial<Star>): Star => ({
-  x: x || getRandomXOrYRelativeToNorthStar(),
-  y: y || getRandomXOrYRelativeToNorthStar(),
+  x: x !== undefined ? x : getRandomXOrYRelativeToNorthStar(),
+  y: y !== undefined ? y : getRandomXOrYRelativeToNorthStar(),
   diameter: diameter || getRandomStarDiameter(),
 });
 
@@ -63,7 +63,12 @@ let northStar: Star;
 function draw() {
   background(50);
 
-  if (!northStar) northStar = createStar({ x: 0, y: 0 });
+  if (!northStar)
+    northStar = createStar({
+      x: 0,
+      y: 0,
+    });
+
   translate(NorthStarX, NorthStarY);
   stroke("blue");
   strokeWeight(northStar.diameter);
