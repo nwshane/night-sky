@@ -1,5 +1,5 @@
 const MaxStarDiameter = 5;
-const RotationSpeed = 1;
+const RotationSpeed = 1 / 2;
 const NorthStarHorizontalPosition = 1 / 2;
 const NorthStarVerticalPosition = 2 / 5;
 const StarColor = "rgba(249, 255, 0, 0.4)";
