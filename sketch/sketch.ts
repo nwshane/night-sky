@@ -4,6 +4,9 @@ let NorthStarY: number;
 const RotationSpeed = 1;
 let starCount: number;
 const StarColor = "rgba(249, 255, 0, 0.4)";
+const TwinkleStarColor = "rgba(249, 255, 0, 0.8)";
+const TwinkleProbability = 1 / 5000;
+const TwinkleFrameCount = 10;
 
 /*
 todo:
@@ -92,10 +95,11 @@ function draw() {
     if (twinkling) {
       star.remainingTwinkleFrames--;
     } else {
-      if (getRandomIntBetween(1, 5000) === 1) star.remainingTwinkleFrames += 10;
+      if (getRandomIntBetween(1, Math.ceil(1 / TwinkleProbability)) === 1)
+        star.remainingTwinkleFrames += TwinkleFrameCount;
     }
 
-    stroke(twinkling ? "rgba(249, 255, 0, 0.8)" : StarColor);
+    stroke(twinkling ? TwinkleStarColor : StarColor);
     strokeWeight(twinkling ? star.diameter + 1 : star.diameter);
     rotate((frameCount / 500) * RotationSpeed);
     point(star.x, star.y);
