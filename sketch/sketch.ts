@@ -13,8 +13,9 @@ const TwinkleStarColor = "rgba(249, 255, 0, 0.8)";
 const TwinkleProbability = 1 / 5000;
 const TwinkleFrameCount = 10;
 
-const EarthCircleDiameterInScreenHeights = 5;
+const EarthCircleDiameterInScreenHeights = 8;
 const EarthCirclePeakVerticalPosition = 2 / 3;
+const EarthColor = "#137752";
 
 let NorthStarX: number;
 let NorthStarY: number;
@@ -114,6 +115,8 @@ function draw() {
 
   // render Earth
   translate(-1 * NorthStarX, -1 * NorthStarY);
+  fill(EarthColor);
+  noStroke();
   circle(
     windowWidth * (1 / 2),
     windowHeight * EarthCircleDiameterInScreenHeights * (1 / 2) +
