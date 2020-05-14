@@ -4,6 +4,7 @@ let NorthStarY: number;
 const RotationSpeed = 1;
 let starCount: number;
 const StarColor = "rgba(249, 255, 0, 0.4)";
+
 const TwinkleStarColor = "rgba(249, 255, 0, 0.8)";
 const TwinkleProbability = 1 / 5000;
 const TwinkleFrameCount = 10;
