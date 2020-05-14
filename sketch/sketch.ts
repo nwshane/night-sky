@@ -1,8 +1,7 @@
 const MaxStarDiameter = 5;
-let NorthStarX: number;
-let NorthStarY: number;
 const RotationSpeed = 1;
-let starCount: number;
+const NorthStarHorizontalPosition = 1 / 2;
+const NorthStarVerticalPosition = 2 / 5;
 const StarColor = "rgba(249, 255, 0, 0.4)";
 
 const TwinkleStarColor = "rgba(249, 255, 0, 0.8)";
@@ -11,14 +10,17 @@ const TwinkleFrameCount = 10;
 
 /*
 todo:
-- make stars twinkle
 - add Earth
 */
 
+let NorthStarX: number;
+let NorthStarY: number;
+let starCount: number;
+
 function setup() {
   createCanvas(windowWidth, windowHeight);
-  NorthStarX = width / 2;
-  NorthStarY = height * (2 / 5);
+  NorthStarX = width * NorthStarHorizontalPosition;
+  NorthStarY = height * NorthStarVerticalPosition;
   starCount = Math.floor(windowWidth * windowHeight * 0.00045);
 }
 
