@@ -4,6 +4,11 @@ const NorthStarHorizontalPosition = 1 / 2;
 const NorthStarVerticalPosition = 2 / 5;
 const StarColor = "rgba(249, 255, 0, 0.4)";
 
+// 500 stars on a 1440 x 900 pixel laptop screen
+// (with space for menus etc. at top of screen).
+// The number of stars will change according to the screen size.
+const StarDensityPerSqPixel = 500 / (1440 * 760);
+
 const TwinkleStarColor = "rgba(249, 255, 0, 0.8)";
 const TwinkleProbability = 1 / 5000;
 const TwinkleFrameCount = 10;
@@ -21,7 +26,7 @@ function setup() {
   createCanvas(windowWidth, windowHeight);
   NorthStarX = width * NorthStarHorizontalPosition;
   NorthStarY = height * NorthStarVerticalPosition;
-  starCount = Math.floor(windowWidth * windowHeight * 0.00045);
+  starCount = Math.floor(windowWidth * windowHeight * StarDensityPerSqPixel);
 }
 
 function getRandomIntBetween(min: number, max: number) {
