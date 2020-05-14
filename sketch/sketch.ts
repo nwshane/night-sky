@@ -46,6 +46,8 @@ interface Star {
   x: number;
   y: number;
   diameter: number;
+  // if remainingTwinkleFrames > 0, then the star is twinkling
+  remainingTwinkleFrames: number;
 }
 
 const getRandomStarDiameter = () => getRandomIntBetween(1, MaxStarDiameter + 1);
@@ -54,6 +56,7 @@ const createStar = ({ x, y, diameter }: Partial<Star>): Star => ({
   x: x !== undefined ? x : getRandomXOrYRelativeToNorthStar(),
   y: y !== undefined ? y : getRandomXOrYRelativeToNorthStar(),
   diameter: diameter || getRandomStarDiameter(),
+  remainingTwinkleFrames: 0,
 });
 
 const stars: Star[] = [];
@@ -84,8 +87,16 @@ function draw() {
   // render stars
   for (const star of stars) {
     push();
-    stroke(StarColor);
-    strokeWeight(star.diameter);
+    const twinkling = star.remainingTwinkleFrames > 0;
+
+    if (twinkling) {
+      star.remainingTwinkleFrames--;
+    } else {
+      if (getRandomIntBetween(1, 5000) === 1) star.remainingTwinkleFrames += 10;
+    }
+
+    stroke(twinkling ? "rgba(249, 255, 0, 0.8)" : StarColor);
+    strokeWeight(twinkling ? star.diameter + 1 : star.diameter);
     rotate((frameCount / 500) * RotationSpeed);
     point(star.x, star.y);
     pop();
